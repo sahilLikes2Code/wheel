@@ -73,6 +73,7 @@ const Main = () => {
             selectedNoteIds={selectedNoteIds}
             setSelectedNoteIds={setSelectedNoteIds}
             notes={allNotes}
+            setShowDeleteAlert={setShowDeleteAlert}
           />
         </>
       ) : (
