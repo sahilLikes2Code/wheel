@@ -1,36 +1,23 @@
 import React from "react";
 
 import { MenuHorizontal } from "@bigbinary/neeto-icons";
-import { Typography, Avatar } from "@bigbinary/neetoui/v2";
+import { Typography, Avatar, Dropdown } from "@bigbinary/neetoui/v2";
 import "dayjs";
 import { Checkbox } from "neetoui";
 
 import dummyContacts from "../../../constants/dummyContacts";
 
-export default function ContactsTable({
-  selectedNoteIds,
-  setSelectedNoteIds,
-  notes = [],
-}) {
+export default function ContactsTable({ setShowDeleteAlert }) {
+  const deleteNote = () => {
+    setShowDeleteAlert(true);
+  };
   return (
     <div className="w-full px-4">
       <table className="nui-table nui-table--checkbox">
         <thead>
           <tr>
             <th>
-              <Checkbox
-                checked={
-                  selectedNoteIds.length === notes.map(note => note.id).length
-                }
-                onClick={() => {
-                  const noteIds = notes.map(note => note.id);
-                  if (selectedNoteIds.length === noteIds.length) {
-                    setSelectedNoteIds([]);
-                  } else {
-                    setSelectedNoteIds(noteIds);
-                  }
-                }}
-              />
+              <Checkbox />
             </th>
             <th className="text-left">Name & Role</th>
             <th className="text-left">Email</th>
@@ -70,7 +57,13 @@ export default function ContactsTable({
               <td>{contact.email}</td>
               <td>Feb 5, 2021</td>
               <td>
-                <MenuHorizontal />
+                <Dropdown
+                  buttonStyle="text"
+                  position="bottom-end"
+                  icon={MenuHorizontal}
+                >
+                  <li onClick={() => deleteNote()}>Delete Note</li>
+                </Dropdown>
               </td>
             </tr>
           ))}

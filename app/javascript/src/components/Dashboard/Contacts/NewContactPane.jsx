@@ -4,7 +4,7 @@ import { Pane, Typography } from "@bigbinary/neetoui/v2";
 
 import NewContactForm from "./NewContactForm";
 
-export default function NewContactPane({ fetchNotes, showPane, setShowPane }) {
+export default function NewContactPane({ showPane, setShowPane }) {
   const onClose = () => setShowPane(false);
   return (
     <Pane isOpen={showPane} onClose={() => onClose()} size="lg">
@@ -14,7 +14,7 @@ export default function NewContactPane({ fetchNotes, showPane, setShowPane }) {
         </Typography>
       </Pane.Header>
       <Pane.Body>
-        <NewContactForm onClose={onClose} refetch={fetchNotes} />
+        <NewContactForm onClose={onClose} />
       </Pane.Body>
     </Pane>
   );

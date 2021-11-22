@@ -1,41 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Search } from "@bigbinary/neeto-icons";
-import { Button, Input, PageLoader } from "@bigbinary/neetoui/v2";
+import { Button, Input } from "@bigbinary/neetoui/v2";
 import { Pagination } from "@bigbinary/neetoui/v2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
 
-import notesApi from "apis/notes";
-
 import ContactsTable from "./ContactsTable";
+import DeleteAlert from "./DeleteAlert";
 import NewContactPane from "./NewContactPane";
 
 const Main = () => {
-  const [loading, setLoading] = useState(true);
   const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
-  const [notes, setNotes] = useState([]);
-
-  useEffect(() => {
-    fetchNotes();
-  }, []);
-
-  const fetchNotes = async () => {
-    try {
-      setLoading(true);
-      const response = await notesApi.fetch();
-      setNotes(response.data.notes);
-    } catch (error) {
-      logger.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return <PageLoader />;
-  }
 
   return (
     <>
@@ -67,7 +44,7 @@ const Main = () => {
       <ContactsTable
         selectedNoteIds={selectedNoteIds}
         setSelectedNoteIds={setSelectedNoteIds}
-        notes={notes}
+        setShowDeleteAlert={setShowDeleteAlert}
       />
       <Pagination
         count={500}
@@ -75,6 +52,9 @@ const Main = () => {
         pageSize={50}
         className="mt-9 flex justify-end mr-32"
       />
+      {showDeleteAlert && (
+        <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
+      )}
     </>
   );
 };
