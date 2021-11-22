@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import { Search } from "@bigbinary/neeto-icons";
 import { Button, Input, PageLoader } from "@bigbinary/neetoui/v2";
-import { Header } from "@bigbinary/neetoui/v2/layouts";
 import { Pagination } from "@bigbinary/neetoui/v2";
+import { Header } from "@bigbinary/neetoui/v2/layouts";
 
 import notesApi from "apis/notes";
+
 import ContactsTable from "./ContactsTable";
+import NewContactPane from "./NewContactPane";
 
 const Main = () => {
   const [loading, setLoading] = useState(true);
@@ -57,6 +59,10 @@ const Main = () => {
         }
         menuBarToggle={"addme"}
         className="px-5"
+      />
+      <NewContactPane
+        showPane={showNewContactPane}
+        setShowPane={setShowNewContactPane}
       />
       <ContactsTable
         selectedNoteIds={selectedNoteIds}

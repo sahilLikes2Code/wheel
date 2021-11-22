@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MenuHorizontal } from "@bigbinary/neeto-icons";
-import { Typography } from "@bigbinary/neetoui/v2";
+import { Typography, Avatar } from "@bigbinary/neetoui/v2";
 import "dayjs";
 import { Checkbox } from "neetoui";
 
@@ -48,12 +48,24 @@ export default function ContactsTable({
                 <Checkbox />
               </td>
               <td>
-                <Typography style="h5" weight="semibold">
-                  {contact.name}
-                </Typography>
-                <Typography style="h6" weight="light">
-                  {contact.role}
-                </Typography>
+                <div className="flex">
+                  <Avatar
+                    user={{
+                      name: contact.name,
+                      imageUrl: contact.imageUrl,
+                    }}
+                    size="medium"
+                    className="mr-3"
+                  />
+                  <div>
+                    <Typography style="h5" weight="semibold">
+                      {contact.name}
+                    </Typography>
+                    <Typography style="h6" weight="light">
+                      {contact.role}
+                    </Typography>
+                  </div>
+                </div>
               </td>
               <td>{contact.email}</td>
               <td>Feb 5, 2021</td>
