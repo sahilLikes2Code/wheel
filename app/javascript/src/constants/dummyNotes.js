@@ -1,4 +1,4 @@
-const dummyNotes = [
+const DUMMY_NOTES = [
   {
     title: "How to claim the warranty?",
     description:
@@ -19,4 +19,4 @@ const dummyNotes = [
   },
 ];
 
-export default dummyNotes;
+export default DUMMY_NOTES;

@@ -12,7 +12,7 @@ import DeleteAlert from "./DeleteAlert";
 import NewNotePane from "./NewNotePane";
 import NotesList from "./NotesList";
 
-import dummyNotes from "../../../constants/dummyNotes";
+import DUMMY_NOTES from "../../../constants/dummyNotes";
 
 const Main = () => {
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ const Main = () => {
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([]);
 
-  const allNotes = dummyNotes.concat(notes);
+  const allNotes = DUMMY_NOTES.concat(notes);
 
   useEffect(() => {
     fetchNotes();

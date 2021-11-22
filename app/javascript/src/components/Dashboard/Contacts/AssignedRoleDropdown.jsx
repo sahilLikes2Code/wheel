@@ -2,28 +2,29 @@ import React from "react";
 
 import { Select } from "neetoui/formik";
 
-export default function TagsDropdown({ name }) {
+export default function AssignedRoleDropdown({ name }) {
   return (
     <Select
       name={name}
       isClearable
       isSearchable
-      label="Tags *"
+      label="Assigned Contact *"
       options={[
         {
-          label: "Tag1",
-          value: "tag1",
+          label: "Manager",
+          value: "manager",
         },
         {
-          label: "Tag2",
-          value: "tag2",
+          label: "Client",
+          value: "client",
         },
         {
-          label: "Tag3",
-          value: "tag3",
+          label: "Admin",
+          value: "admin",
         },
       ]}
       placeholder="Select Role"
+      className="mb-6"
     />
   );
 }

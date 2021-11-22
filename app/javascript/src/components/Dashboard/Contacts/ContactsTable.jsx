@@ -1,69 +1,74 @@
 import React from "react";
 
 import { MenuHorizontal } from "@bigbinary/neeto-icons";
-import { Typography } from "@bigbinary/neetoui/v2";
+import { Typography, Avatar, Dropdown, Table } from "@bigbinary/neetoui/v2";
 import "dayjs";
-import { Checkbox } from "neetoui";
 
-import dummyContacts from "../../../constants/dummyContacts";
+import DUMMY_CONTACTS from "../../../constants/dummyContacts";
 
-export default function ContactsTable({
-  selectedNoteIds,
-  setSelectedNoteIds,
-  notes = [],
-}) {
+export default function ContactsTable({ setShowDeleteAlert }) {
+  const deleteContact = () => {
+    setShowDeleteAlert(true);
+  };
   return (
-    <div className="w-full px-4">
-      <table className="nui-table nui-table--checkbox">
-        <thead>
-          <tr>
-            <th>
-              <Checkbox
-                checked={
-                  selectedNoteIds.length === notes.map(note => note.id).length
-                }
-                onClick={() => {
-                  const noteIds = notes.map(note => note.id);
-                  if (selectedNoteIds.length === noteIds.length) {
-                    setSelectedNoteIds([]);
-                  } else {
-                    setSelectedNoteIds(noteIds);
-                  }
+    <Table
+      className=""
+      rowData={DUMMY_CONTACTS}
+      currentPageNumber={3}
+      totalCount={10}
+      columnData={[
+        {
+          dataIndex: "name",
+          key: "name",
+          title: "Name & Role",
+          render: (name, data) => (
+            <div className="flex">
+              <Avatar
+                user={{
+                  name: name,
+                  imageUrl: data.imageUrl,
                 }}
+                size="medium"
+                className="mr-3"
               />
-            </th>
-            <th className="text-left">Name & Role</th>
-            <th className="text-left">Email</th>
-            <th className="text-left">Created At</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {dummyContacts.map(contact => (
-            <tr
-              key={contact.id}
-              className={"cursor-pointer bg-white hover:bg-gray-50"}
-            >
-              <td>
-                <Checkbox />
-              </td>
-              <td>
+              <div>
                 <Typography style="h5" weight="semibold">
-                  {contact.name}
+                  {name}
                 </Typography>
                 <Typography style="h6" weight="light">
-                  {contact.role}
+                  {data.role}
                 </Typography>
-              </td>
-              <td>{contact.email}</td>
-              <td>Feb 5, 2021</td>
-              <td>
-                <MenuHorizontal />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+              </div>
+            </div>
+          ),
+        },
+        {
+          dataIndex: "email",
+          key: "email",
+          title: "Email",
+        },
+        {
+          dataIndex: "created_at",
+          key: "created_at",
+          title: "Created at",
+          render: () => <div>Feb 5, 2021</div>,
+        },
+        {
+          dataIndex: "",
+          key: "",
+          title: "",
+          width: 10,
+          render: () => (
+            <Dropdown
+              buttonStyle="text"
+              position="bottom-end"
+              icon={MenuHorizontal}
+            >
+              <li onClick={() => deleteContact()}>Delete Contact</li>
+            </Dropdown>
+          ),
+        },
+      ]}
+    />
   );
 }

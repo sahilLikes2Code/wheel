@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button } from "neetoui";
+import { Button } from "@bigbinary/neetoui/v2";
 
 export default function EmptyState({
   image,

@@ -24,7 +24,7 @@ class Api::V1::NotesController < Api::V1::BaseController
   def bulk_delete
     if @notes.destroy_all
       render json: {
-        notice: I18n.t("notice.note", count: @notes.size, action: "deleted")
+        notice: I18n.t("notice.note", count: 1, action: "deleted")
       }
     else
       render json: { error: "Something went wrong!" }, status: :unprocessable_entity
