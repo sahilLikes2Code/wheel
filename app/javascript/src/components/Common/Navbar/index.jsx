@@ -41,8 +41,8 @@ const NavBar = () => {
           },
           {
             icon: UserCircle,
-            label: "Users",
-            to: "/users",
+            label: "Contacts",
+            to: "/contacts",
           },
           {
             icon: NeetoInsights,
