@@ -12,12 +12,11 @@ import NewContactPane from "./NewContactPane";
 const Main = () => {
   const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
 
   return (
     <>
       <Header
-        title="All Notes"
+        title="All Contacts"
         actionBlock={
           <>
             <Input
@@ -41,11 +40,7 @@ const Main = () => {
         showPane={showNewContactPane}
         setShowPane={setShowNewContactPane}
       />
-      <ContactsTable
-        selectedNoteIds={selectedNoteIds}
-        setSelectedNoteIds={setSelectedNoteIds}
-        setShowDeleteAlert={setShowDeleteAlert}
-      />
+      <ContactsTable setShowDeleteAlert={setShowDeleteAlert} />
       <Pagination
         count={500}
         pageNo={3}

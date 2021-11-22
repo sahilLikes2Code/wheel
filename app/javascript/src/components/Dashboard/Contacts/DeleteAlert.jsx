@@ -3,18 +3,18 @@ import React from "react";
 import { Modal, Button, Typography, Toastr } from "@bigbinary/neetoui/v2";
 
 export default function DeleteAlert({ onClose }) {
-  const handleDelete = async () => {
+  const handleDelete = () => {
     Toastr.success("Contact deleted successfully.");
     onClose();
   };
   return (
     <Modal isOpen size="md" closeButton={false}>
       <Modal.Header>
-        <Typography style="h2">Delete Note</Typography>
+        <Typography style="h2">Delete Contact</Typography>
       </Modal.Header>
       <Modal.Body>
         <Typography style="body2" lineHeight="normal">
-          Are you sure you want to delete the note? This action cannot be
+          Are you sure you want to delete the contact? This action cannot be
           undone.
         </Typography>
       </Modal.Body>

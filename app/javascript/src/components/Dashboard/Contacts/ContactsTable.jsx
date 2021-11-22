@@ -1,14 +1,13 @@
 import React from "react";
 
 import { MenuHorizontal } from "@bigbinary/neeto-icons";
-import { Typography, Avatar, Dropdown } from "@bigbinary/neetoui/v2";
+import { Typography, Avatar, Dropdown, Checkbox } from "@bigbinary/neetoui/v2";
 import "dayjs";
-import { Checkbox } from "neetoui";
 
 import DUMMY_CONTACTS from "../../../constants/dummyContacts";
 
 export default function ContactsTable({ setShowDeleteAlert }) {
-  const deleteNote = () => {
+  const deleteContact = () => {
     setShowDeleteAlert(true);
   };
   return (
@@ -26,9 +25,9 @@ export default function ContactsTable({ setShowDeleteAlert }) {
           </tr>
         </thead>
         <tbody>
-          {DUMMY_CONTACTS.map(contact => (
+          {DUMMY_CONTACTS.map(({ email, imageUrl, name, role }, index) => (
             <tr
-              key={contact.id}
+              key={index}
               className={"cursor-pointer bg-white hover:bg-gray-50"}
             >
               <td>
@@ -38,23 +37,23 @@ export default function ContactsTable({ setShowDeleteAlert }) {
                 <div className="flex">
                   <Avatar
                     user={{
-                      name: contact.name,
-                      imageUrl: contact.imageUrl,
+                      name: name,
+                      imageUrl: imageUrl,
                     }}
                     size="medium"
                     className="mr-3"
                   />
                   <div>
                     <Typography style="h5" weight="semibold">
-                      {contact.name}
+                      {name}
                     </Typography>
                     <Typography style="h6" weight="light">
-                      {contact.role}
+                      {role}
                     </Typography>
                   </div>
                 </div>
               </td>
-              <td>{contact.email}</td>
+              <td>{email}</td>
               <td>Feb 5, 2021</td>
               <td>
                 <Dropdown
@@ -62,7 +61,7 @@ export default function ContactsTable({ setShowDeleteAlert }) {
                   position="bottom-end"
                   icon={MenuHorizontal}
                 >
-                  <li onClick={() => deleteNote()}>Delete Note</li>
+                  <li onClick={() => deleteContact()}>Delete Contact</li>
                 </Dropdown>
               </td>
             </tr>
