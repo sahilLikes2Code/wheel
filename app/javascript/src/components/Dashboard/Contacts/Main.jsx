@@ -3,25 +3,17 @@ import React, { useState, useEffect } from "react";
 import { Search } from "@bigbinary/neeto-icons";
 import { Button, Input, PageLoader } from "@bigbinary/neetoui/v2";
 import { Header } from "@bigbinary/neetoui/v2/layouts";
-import EmptyNotesListImage from "images/EmptyNotesList";
+import { Pagination } from "@bigbinary/neetoui/v2";
 
 import notesApi from "apis/notes";
-import EmptyState from "components/Common/EmptyState";
-
-import DeleteAlert from "./DeleteAlert";
-import NewNotePane from "./NewNotePane";
-import NotesList from "./NotesList";
-
-import dummyNotes from "../../../constants/dummyNotes";
+import ContactsTable from "./ContactsTable";
 
 const Main = () => {
   const [loading, setLoading] = useState(true);
-  const [showNewNotePane, setShowNewNotePane] = useState(false);
+  const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([]);
-
-  const allNotes = dummyNotes.concat(notes);
 
   useEffect(() => {
     fetchNotes();
@@ -56,8 +48,8 @@ const Main = () => {
               style={{ width: "305px" }}
             />
             <Button
-              onClick={() => setShowNewNotePane(true)}
-              label="Add Note"
+              onClick={() => setShowNewContactPane(true)}
+              label="Add Contact"
               icon="ri-add-line"
               className="py-2"
             />
@@ -66,36 +58,17 @@ const Main = () => {
         menuBarToggle={"addme"}
         className="px-5"
       />
-      {allNotes.length ? (
-        <>
-          <NotesList
-            selectedNoteIds={selectedNoteIds}
-            setSelectedNoteIds={setSelectedNoteIds}
-            notes={allNotes}
-            setShowDeleteAlert={setShowDeleteAlert}
-          />
-        </>
-      ) : (
-        <EmptyState
-          image={EmptyNotesListImage}
-          title="Looks like you don't have any notes!"
-          subtitle="Add your notes to send customized emails to them."
-          primaryAction={() => setShowNewNotePane(true)}
-          primaryActionLabel="Add New Note"
-        />
-      )}
-      <NewNotePane
-        showPane={showNewNotePane}
-        setShowPane={setShowNewNotePane}
-        fetchNotes={fetchNotes}
+      <ContactsTable
+        selectedNoteIds={selectedNoteIds}
+        setSelectedNoteIds={setSelectedNoteIds}
+        notes={notes}
       />
-      {showDeleteAlert && (
-        <DeleteAlert
-          selectedNoteIds={selectedNoteIds}
-          onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchNotes}
-        />
-      )}
+      <Pagination
+        count={500}
+        pageNo={3}
+        pageSize={50}
+        className="mt-9 flex justify-end mr-32"
+      />
     </>
   );
 };
