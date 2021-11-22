@@ -5,7 +5,7 @@ import { Typography, Avatar, Dropdown } from "@bigbinary/neetoui/v2";
 import "dayjs";
 import { Checkbox } from "neetoui";
 
-import dummyContacts from "../../../constants/dummyContacts";
+import DUMMY_CONTACTS from "../../../constants/dummyContacts";
 
 export default function ContactsTable({ setShowDeleteAlert }) {
   const deleteNote = () => {
@@ -26,7 +26,7 @@ export default function ContactsTable({ setShowDeleteAlert }) {
           </tr>
         </thead>
         <tbody>
-          {dummyContacts.map(contact => (
+          {DUMMY_CONTACTS.map(contact => (
             <tr
               key={contact.id}
               className={"cursor-pointer bg-white hover:bg-gray-50"}

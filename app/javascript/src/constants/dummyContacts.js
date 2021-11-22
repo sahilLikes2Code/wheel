@@ -1,4 +1,4 @@
-const dummyContacts = [
+const DUMMY_CONTACTS = [
   {
     name: "Ronald Richards",
     role: "Owner",
@@ -56,4 +56,4 @@ const dummyContacts = [
   },
 ];
 
-export default dummyContacts;
+export default DUMMY_CONTACTS;
