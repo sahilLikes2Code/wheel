@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MenuHorizontal } from "@bigbinary/neeto-icons";
-import { Typography, Avatar, Dropdown, Checkbox } from "@bigbinary/neetoui/v2";
+import { Typography, Avatar, Dropdown, Table } from "@bigbinary/neetoui/v2";
 import "dayjs";
 
 import DUMMY_CONTACTS from "../../../constants/dummyContacts";
@@ -11,63 +11,64 @@ export default function ContactsTable({ setShowDeleteAlert }) {
     setShowDeleteAlert(true);
   };
   return (
-    <div className="w-full px-4">
-      <table className="nui-table nui-table--checkbox">
-        <thead>
-          <tr>
-            <th>
-              <Checkbox />
-            </th>
-            <th className="text-left">Name & Role</th>
-            <th className="text-left">Email</th>
-            <th className="text-left">Created At</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {DUMMY_CONTACTS.map(({ email, imageUrl, name, role }, index) => (
-            <tr
-              key={index}
-              className={"cursor-pointer bg-white hover:bg-gray-50"}
+    <Table
+      className=""
+      rowData={DUMMY_CONTACTS}
+      currentPageNumber={3}
+      totalCount={10}
+      columnData={[
+        {
+          dataIndex: "name",
+          key: "name",
+          title: "Name & Role",
+          render: (name, data) => (
+            <div className="flex">
+              <Avatar
+                user={{
+                  name: name,
+                  imageUrl: data.imageUrl,
+                }}
+                size="medium"
+                className="mr-3"
+              />
+              <div>
+                <Typography style="h5" weight="semibold">
+                  {name}
+                </Typography>
+                <Typography style="h6" weight="light">
+                  {data.role}
+                </Typography>
+              </div>
+            </div>
+          ),
+        },
+        {
+          dataIndex: "email",
+          key: "email",
+          title: "Email",
+        },
+        {
+          dataIndex: "created_at",
+          key: "created_at",
+          title: "Created at",
+          render: () => <div>Feb 5, 2021</div>,
+        },
+        {
+          dataIndex: "",
+          key: "",
+          title: "",
+          width: 10,
+          render: () => (
+            <Dropdown
+              buttonStyle="text"
+              position="bottom-end"
+              icon={MenuHorizontal}
             >
-              <td>
-                <Checkbox />
-              </td>
-              <td>
-                <div className="flex">
-                  <Avatar
-                    user={{
-                      name: name,
-                      imageUrl: imageUrl,
-                    }}
-                    size="medium"
-                    className="mr-3"
-                  />
-                  <div>
-                    <Typography style="h5" weight="semibold">
-                      {name}
-                    </Typography>
-                    <Typography style="h6" weight="light">
-                      {role}
-                    </Typography>
-                  </div>
-                </div>
-              </td>
-              <td>{email}</td>
-              <td>Feb 5, 2021</td>
-              <td>
-                <Dropdown
-                  buttonStyle="text"
-                  position="bottom-end"
-                  icon={MenuHorizontal}
-                >
-                  <li onClick={() => deleteContact()}>Delete Contact</li>
-                </Dropdown>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+              <li onClick={() => deleteContact()}>Delete Contact</li>
+            </Dropdown>
+          ),
+        },
+      ]}
+    />
   );
 }

@@ -40,13 +40,15 @@ const Main = () => {
         showPane={showNewContactPane}
         setShowPane={setShowNewContactPane}
       />
-      <ContactsTable setShowDeleteAlert={setShowDeleteAlert} />
-      <Pagination
-        count={500}
-        pageNo={3}
-        pageSize={50}
-        className="mt-9 flex justify-end mr-32"
-      />
+      <div className="ml-5 mr-10">
+        <ContactsTable setShowDeleteAlert={setShowDeleteAlert} />
+        <Pagination
+          count={500}
+          pageNo={3}
+          pageSize={50}
+          className="mt-9 flex justify-end"
+        />
+      </div>
       {showDeleteAlert && (
         <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
       )}
