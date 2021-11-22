@@ -4,9 +4,12 @@ import { Check } from "@bigbinary/neeto-icons";
 import { Button, Toastr } from "@bigbinary/neetoui/v2";
 import { Formik, Form } from "formik";
 import { Input } from "neetoui/formik";
-import * as yup from "yup";
+
+import formInitialValues from "constants/formInitialValues";
 
 import AssignedRoleDropdown from "./AssignedRoleDropdown";
+
+import formValidationSchemas from "../../../constants/formValidationSchemas";
 
 export default function NewContactForm({ onClose }) {
   const handleSubmit = () => {
@@ -16,19 +19,9 @@ export default function NewContactForm({ onClose }) {
 
   return (
     <Formik
-      initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
-        role: "",
-      }}
+      initialValues={formInitialValues.newContactForm}
       onSubmit={handleSubmit}
-      validationSchema={yup.object({
-        firstName: yup.string().required("First Name is required"),
-        lastName: yup.string().required("Last Name is required"),
-        email: yup.string().required("Last Name is required"),
-        role: yup.object().required("Role is required"),
-      })}
+      validationSchema={formValidationSchemas.newContactForm}
     >
       {({ isSubmitting }) => (
         <Form className="w-full">

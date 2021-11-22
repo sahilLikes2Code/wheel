@@ -4,9 +4,10 @@ import { Check } from "@bigbinary/neeto-icons";
 import { Button } from "@bigbinary/neetoui/v2";
 import { Formik, Form } from "formik";
 import { Input } from "neetoui/formik";
-import * as yup from "yup";
 
 import notesApi from "apis/notes";
+import formInitialValues from "constants/formInitialValues";
+import formValidationSchemas from "constants/formValidationSchemas";
 
 import AssignedContractDropdown from "./AssignedContractDropdown";
 import TagsDropdown from "./TagsDropdown";
@@ -24,29 +25,14 @@ export default function NewNoteForm({ onClose, refetch }) {
 
   return (
     <Formik
-      initialValues={{
-        title: "",
-        description: "",
-        assignedContact: "",
-        tags: "",
-      }}
+      initialValues={formInitialValues.newNoteForm}
       onSubmit={handleSubmit}
-      validationSchema={yup.object({
-        title: yup.string().required("Title is required"),
-        description: yup.string().required("Description is required"),
-        assignedContact: yup.object().required("Assigned contact is required"),
-        tags: yup.object().required("Tag is required"),
-      })}
+      validationSchema={formValidationSchemas.newNoteForm}
     >
       {({ isSubmitting }) => (
         <Form className="w-full">
-          <Input label="Title" name="title" className="mb-6" required />
-          <Input
-            label="Description"
-            name="description"
-            className="mb-6"
-            required
-          />
+          <Input label="Title *" name="title" className="mb-6" />
+          <Input label="Description  *" name="description" className="mb-6" />
           <AssignedContractDropdown name="assignedContact" />
           <TagsDropdown name="tags" />
 

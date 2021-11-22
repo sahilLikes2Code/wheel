@@ -8,7 +8,7 @@ export default function TagsDropdown({ name }) {
       name={name}
       isClearable
       isSearchable
-      label="Tags"
+      label="Tags *"
       options={[
         {
           label: "Tag1",
@@ -24,7 +24,6 @@ export default function TagsDropdown({ name }) {
         },
       ]}
       placeholder="Select Role"
-      required
     />
   );
 }

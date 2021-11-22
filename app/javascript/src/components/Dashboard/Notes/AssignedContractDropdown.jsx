@@ -8,7 +8,7 @@ export default function AssignedContractDropdown({ name }) {
       name={name}
       isClearable
       isSearchable
-      label="Assigned Contact"
+      label="Assigned Contact  *"
       options={[
         {
           label: "User1",
@@ -24,7 +24,6 @@ export default function AssignedContractDropdown({ name }) {
         },
       ]}
       placeholder="Select Role"
-      required
       className="mb-6"
     />
   );
