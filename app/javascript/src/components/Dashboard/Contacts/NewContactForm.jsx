@@ -1,8 +1,9 @@
 import React from "react";
 
 import { Check } from "@bigbinary/neeto-icons";
-import { Button, Toastr, Input } from "@bigbinary/neetoui/v2";
+import { Button, Toastr } from "@bigbinary/neetoui/v2";
 import { Formik, Form } from "formik";
+import { Input } from "neetoui/formik";
 
 import formInitialValues from "constants/formInitialValues";
 
