@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Select } from "neetoui/formik";
+import { Select } from "@bigbinary/neetoui/v2";
 
 export default function TagsDropdown({ name }) {
   return (
@@ -11,16 +11,28 @@ export default function TagsDropdown({ name }) {
       label="Tags *"
       options={[
         {
-          label: "Tag1",
-          value: "tag1",
+          label: "Getting Started",
+          value: "gettingStarted",
         },
         {
-          label: "Tag2",
-          value: "tag2",
+          label: "Onboarding",
+          value: "onboarding",
         },
         {
-          label: "Tag3",
-          value: "tag3",
+          label: "User Flow",
+          value: "userFlow",
+        },
+        {
+          label: "UX",
+          value: "ux",
+        },
+        {
+          label: "Bugs",
+          value: "bugs",
+        },
+        {
+          label: "V2",
+          value: "v2",
         },
       ]}
       placeholder="Select Role"

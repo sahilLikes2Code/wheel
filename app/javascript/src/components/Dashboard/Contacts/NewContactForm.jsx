@@ -1,9 +1,8 @@
 import React from "react";
 
 import { Check } from "@bigbinary/neeto-icons";
-import { Button, Toastr } from "@bigbinary/neetoui/v2";
+import { Button, Toastr, Input } from "@bigbinary/neetoui/v2";
 import { Formik, Form } from "formik";
-import { Input } from "neetoui/formik";
 
 import formInitialValues from "constants/formInitialValues";
 
@@ -29,18 +28,14 @@ export default function NewContactForm({ onClose }) {
             <Input
               label="First Name *"
               name="firstName"
-              className="mb-6 w-1/3 mr-2"
+              className="mr-2 mb-6"
             />
-            <Input
-              label="Last Name *"
-              name="lastName"
-              className="ml-2 mb-6 w-1/3"
-            />
+            <Input label="Last Name *" name="lastName" className="mb-6 ml-2" />
           </div>
           <Input label="Email Address *" name="email" className="mb-6" />
           <AssignedRoleDropdown name="role" />
 
-          <div className="absolute bottom-0 left-0 border-t p-8 w-full">
+          <div className="absolute bottom-0 left-0 p-8 w-full border-t">
             <Button
               type="submit"
               label="Save Changes "

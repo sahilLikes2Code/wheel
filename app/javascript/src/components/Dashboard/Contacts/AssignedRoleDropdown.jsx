@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Select } from "neetoui/formik";
+import { Select } from "@bigbinary/neetoui/v2";
 
 export default function AssignedRoleDropdown({ name }) {
   return (

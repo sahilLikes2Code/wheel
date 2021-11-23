@@ -1,9 +1,8 @@
 import React from "react";
 
 import { Check } from "@bigbinary/neeto-icons";
-import { Button } from "@bigbinary/neetoui/v2";
+import { Button, Input } from "@bigbinary/neetoui/v2";
 import { Formik, Form } from "formik";
-import { Input } from "neetoui/formik";
 
 import notesApi from "apis/notes";
 import formInitialValues from "constants/formInitialValues";
@@ -36,7 +35,7 @@ export default function NewNoteForm({ onClose, refetch }) {
           <AssignedContractDropdown name="assignedContact" />
           <TagsDropdown name="tags" />
 
-          <div className="absolute bottom-0 left-0 border-t p-8 w-full">
+          <div className="absolute bottom-0 left-0 p-8 w-full border-t">
             <Button
               type="submit"
               label="Save Changes "

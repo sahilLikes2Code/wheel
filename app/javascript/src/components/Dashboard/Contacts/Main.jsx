@@ -40,13 +40,13 @@ const Main = () => {
         showPane={showNewContactPane}
         setShowPane={setShowNewContactPane}
       />
-      <div className="ml-5 mr-10">
+      <div className="mr-10 ml-5">
         <ContactsTable setShowDeleteAlert={setShowDeleteAlert} />
         <Pagination
           count={500}
           pageNo={3}
           pageSize={50}
-          className="mt-9 flex justify-end"
+          className="flex justify-end mt-9"
         />
       </div>
       {showDeleteAlert && (

@@ -2,7 +2,7 @@ import React from "react";
 
 import { MenuHorizontal } from "@bigbinary/neeto-icons";
 import { Typography, Avatar, Dropdown, Table } from "@bigbinary/neetoui/v2";
-import "dayjs";
+import * as dayjs from "dayjs";
 
 import DUMMY_CONTACTS from "../../../constants/dummyContacts";
 
@@ -10,9 +10,13 @@ export default function ContactsTable({ setShowDeleteAlert }) {
   const deleteContact = () => {
     setShowDeleteAlert(true);
   };
+
+  const createdAtDayAndDate = created_at => {
+    return dayjs(created_at).format("ddd, DD, YYYY");
+  };
+
   return (
     <Table
-      className=""
       rowData={DUMMY_CONTACTS}
       currentPageNumber={3}
       totalCount={10}
@@ -51,7 +55,7 @@ export default function ContactsTable({ setShowDeleteAlert }) {
           dataIndex: "created_at",
           key: "created_at",
           title: "Created at",
-          render: () => <div>Feb 5, 2021</div>,
+          render: created_at => <div>{createdAtDayAndDate(created_at)}</div>,
         },
         {
           dataIndex: "",
@@ -64,7 +68,7 @@ export default function ContactsTable({ setShowDeleteAlert }) {
               position="bottom-end"
               icon={MenuHorizontal}
             >
-              <li onClick={() => deleteContact()}>Delete Contact</li>
+              <li onClick={() => deleteContact()}>Delete</li>
             </Dropdown>
           ),
         },
