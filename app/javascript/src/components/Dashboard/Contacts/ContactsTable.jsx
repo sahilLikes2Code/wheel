@@ -17,6 +17,9 @@ export default function ContactsTable({ setShowDeleteAlert }) {
 
   return (
     <Table
+      rowClassName={(record, index) =>
+        index % 2 === 0 ? "bg-gray-100" : "bg-white"
+      }
       rowData={DUMMY_CONTACTS}
       currentPageNumber={3}
       totalCount={10}

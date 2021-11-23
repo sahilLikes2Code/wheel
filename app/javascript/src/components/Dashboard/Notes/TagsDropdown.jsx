@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Select } from "@bigbinary/neetoui/v2";
+import { Select } from "neetoui/formik";
 
 export default function TagsDropdown({ name }) {
   return (

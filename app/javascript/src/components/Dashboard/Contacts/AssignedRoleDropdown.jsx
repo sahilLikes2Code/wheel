@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Select } from "@bigbinary/neetoui/v2";
+import { Select } from "neetoui/formik";
 
 export default function AssignedRoleDropdown({ name }) {
   return (
@@ -8,7 +8,7 @@ export default function AssignedRoleDropdown({ name }) {
       name={name}
       isClearable
       isSearchable
-      label="Assigned Contact *"
+      label="Assigned Role *"
       options={[
         {
           label: "Manager",
