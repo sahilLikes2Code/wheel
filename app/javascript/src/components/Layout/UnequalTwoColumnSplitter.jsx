@@ -2,9 +2,9 @@ import React from "react";
 
 const UnequalTwoColumnSplitter = ({ menu, mainContent }) => {
   return (
-    <div className="flex">
-      <div className="background-light-gray">{menu}</div>
-      <div className="entire-remaining-vw">{mainContent}</div>
+    <div className="flex w-full">
+      <div>{menu}</div>
+      <div className="w-full overflow-auto">{mainContent}</div>
     </div>
   );
 };
