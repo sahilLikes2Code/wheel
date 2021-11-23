@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Modal, Button, Typography } from "@bigbinary/neetoui/v2";
+import { Modal, Button, Typography } from "neetoui/v2";
 
 import notesApi from "apis/notes";
 

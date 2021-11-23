@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-import { Search } from "@bigbinary/neeto-icons";
-import { Button, Input, PageLoader } from "@bigbinary/neetoui/v2";
-import { Header } from "@bigbinary/neetoui/v2/layouts";
 import EmptyNotesListImage from "images/EmptyNotesList";
+import { Search, Plus } from "neetoIcons";
+import { Button, Input, PageLoader } from "neetoui/v2";
+import { Header } from "neetoui/v2/layouts";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
+import { DUMMY_NOTES } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import NewNotePane from "./NewNotePane";
 import NotesList from "./NotesList";
 
-import DUMMY_NOTES from "../../../constants/dummyNotes";
-
 const Main = () => {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
@@ -29,17 +28,17 @@ const Main = () => {
 
   const fetchNotes = async () => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const response = await notesApi.fetch();
       setNotes(response.data.notes);
     } catch (error) {
       logger.error(error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return <PageLoader />;
   }
 
@@ -51,14 +50,13 @@ const Main = () => {
           <>
             <Input
               prefix={<Search />}
-              className="mr-3"
+              className="mr-3 w-80"
               placeholder="Search Name, Email, Phone Number, Etc."
-              style={{ width: "305px" }}
             />
             <Button
               onClick={() => setShowNewNotePane(true)}
               label="Add Note"
-              icon="ri-add-line"
+              icon={Plus}
               className="py-2"
             />
           </>

@@ -1,5 +1,5 @@
-import { Toastr } from "@bigbinary/neetoui/v2";
 import axios from "axios";
+import { Toastr } from "neetoui/v2";
 
 import { getFromLocalStorage } from "helpers/storage";
 
