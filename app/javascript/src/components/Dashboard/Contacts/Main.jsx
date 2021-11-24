@@ -1,29 +1,31 @@
 import React, { useState } from "react";
 
-import { Search } from "@bigbinary/neeto-icons";
-import { Button, Input } from "@bigbinary/neetoui/v2";
-import { Pagination } from "@bigbinary/neetoui/v2";
-import { Header } from "@bigbinary/neetoui/v2/layouts";
+import { Search } from "neetoIcons";
+import { Alert, Button, Input, Pagination, Toastr } from "neetoui/v2";
+import { Header } from "neetoui/v2/layouts";
 
 import ContactsTable from "./ContactsTable";
-import DeleteAlert from "./DeleteAlert";
-import NewContactPane from "./NewContactPane";
+import NewContact from "./NewContact";
 
 const Main = () => {
   const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
+  const handleDelete = () => {
+    Toastr.success("Contact deleted successfully.");
+    setShowDeleteAlert(false);
+  };
+
   return (
-    <>
+    <div className="mx-5">
       <Header
         title="All Contacts"
         actionBlock={
           <>
             <Input
               prefix={<Search />}
-              className="mr-3"
+              className="mr-3 w-80"
               placeholder="Search Name, Email, Phone Number, Etc."
-              style={{ width: "305px" }}
             />
             <Button
               onClick={() => setShowNewContactPane(true)}
@@ -34,13 +36,12 @@ const Main = () => {
           </>
         }
         menuBarToggle={"addme"}
-        className="px-5"
       />
-      <NewContactPane
+      <NewContact
         showPane={showNewContactPane}
         setShowPane={setShowNewContactPane}
       />
-      <div className="mr-10 ml-5">
+      <div>
         <ContactsTable setShowDeleteAlert={setShowDeleteAlert} />
         <Pagination
           count={500}
@@ -50,9 +51,17 @@ const Main = () => {
         />
       </div>
       {showDeleteAlert && (
-        <DeleteAlert onClose={() => setShowDeleteAlert(false)} />
+        <Alert
+          isOpen={showDeleteAlert}
+          closeOnOutsideClick={true}
+          message="Are you sure you want to delete the contact? This action cannot be undone."
+          onClose={() => setShowDeleteAlert(false)}
+          onSubmit={() => handleDelete()}
+          size="md"
+          title="Delete Contact"
+        />
       )}
-    </>
+    </div>
   );
 };
 

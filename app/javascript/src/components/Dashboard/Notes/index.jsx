@@ -1,6 +1,6 @@
 import React from "react";
 
-import UnequalTwoColumnSplitter from "components/Layout/UnequalTwoColumnSplitter";
+import TwoColumnLayout from "components/Layout/TwoColumnLayout";
 
 import Main from "./Main";
 import SideMenu from "./SideMenu";
@@ -8,7 +8,7 @@ import SideMenu from "./SideMenu";
 const Notes = () => {
   return (
     <>
-      <UnequalTwoColumnSplitter menu={<SideMenu />} mainContent={<Main />} />
+      <TwoColumnLayout menu={<SideMenu />} mainContent={<Main />} />
     </>
   );
 };

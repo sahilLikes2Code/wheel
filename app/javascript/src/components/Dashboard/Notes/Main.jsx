@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Search, Plus } from "neetoIcons";
-import { Button, Input, PageLoader } from "neetoui/v2";
+import { Alert, Button, Input, PageLoader } from "neetoui/v2";
 import { Header } from "neetoui/v2/layouts";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
 import { DUMMY_NOTES } from "./constants";
-import DeleteAlert from "./DeleteAlert";
-import NewNotePane from "./NewNotePane";
+import NewNote from "./NewNote";
+// import NewNotePane from "./NewNotePane";
 import NotesList from "./NotesList";
 
 const Main = () => {
@@ -18,6 +18,7 @@ const Main = () => {
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [notes, setNotes] = useState([]);
 
   const allNotes = DUMMY_NOTES.concat(notes);
@@ -35,6 +36,19 @@ const Main = () => {
       logger.error(error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      setIsDeleting(true);
+      await notesApi.destroy({ ids: selectedNoteIds });
+      setShowDeleteAlert(false);
+      fetchNotes();
+    } catch (error) {
+      logger.error(error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -82,16 +96,21 @@ const Main = () => {
           primaryActionLabel="Add New Note"
         />
       )}
-      <NewNotePane
+      <NewNote
         showPane={showNewNotePane}
         setShowPane={setShowNewNotePane}
         fetchNotes={fetchNotes}
       />
       {showDeleteAlert && (
-        <DeleteAlert
-          selectedNoteIds={selectedNoteIds}
+        <Alert
+          closeOnOutsideClick={true}
+          isOpen={showDeleteAlert}
+          isSubmitting={isDeleting}
+          message="Are you sure you want to delete the note? This action cannot be undone."
           onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchNotes}
+          onSubmit={() => handleDelete()}
+          size="md"
+          title="Delete Contact"
         />
       )}
     </>

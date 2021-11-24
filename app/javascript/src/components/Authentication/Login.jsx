@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import { Form, Formik } from "formik";
-import { Button, Toastr } from "neetoui";
-import { Input as FormikInput } from "neetoui/formik";
+import { Button, Toastr } from "neetoui/v2";
+import { Input as FormikInput } from "neetoui/v2/formik";
 import PropTypes from "prop-types";
 
 import authenticationApi from "apis/authentication";
@@ -38,8 +38,8 @@ const Login = ({ history }) => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center w-screen h-screen p-6 overflow-x-hidden overflow-y-auto bg-gray-100">
-      <div className="flex flex-col items-center justify-center w-full h-full mx-auto sm:max-w-md">
+    <div className="flex overflow-y-auto overflow-x-hidden flex-row justify-center items-center p-6 w-screen h-screen bg-gray-100">
+      <div className="flex flex-col justify-center items-center mx-auto w-full h-full sm:max-w-md">
         <h2 className="mb-5 text-3xl font-extrabold text-center text-gray-800">
           Sign In
         </h2>
@@ -51,7 +51,7 @@ const Login = ({ history }) => {
           validationSchema={formValidationSchemas.loginForm}
         >
           {({ handleSubmit }) => (
-            <Form className="w-full p-8 space-y-6 bg-white border rounded-md shadow">
+            <Form className="p-8 space-y-6 w-full bg-white rounded-md border shadow">
               <FormikInput
                 name="email"
                 type="email"
@@ -83,8 +83,8 @@ const Login = ({ history }) => {
             </Form>
           )}
         </Formik>
-        <div className="flex flex-col items-center justify-center mt-4 space-y-2">
-          <div className="flex flex-row items-center justify-start space-x-1">
+        <div className="flex flex-col justify-center items-center mt-4 space-y-2">
+          <div className="flex flex-row justify-start items-center space-x-1">
             <p className="font-normal text-gray-600">{`Don't have an account?`}</p>
             <Button
               label="Signup"

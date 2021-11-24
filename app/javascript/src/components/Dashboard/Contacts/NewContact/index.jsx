@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Pane, Typography } from "@bigbinary/neetoui/v2";
+import { Pane, Typography } from "neetoui/v2";
 
-import NewContactForm from "./NewContactForm";
+import Form from "./Form";
 
 export default function NewContactPane({ showPane, setShowPane }) {
   const onClose = () => setShowPane(false);
@@ -14,7 +14,7 @@ export default function NewContactPane({ showPane, setShowPane }) {
         </Typography>
       </Pane.Header>
       <Pane.Body>
-        <NewContactForm onClose={onClose} />
+        <Form onClose={onClose} />
       </Pane.Body>
     </Pane>
   );

@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Search, Settings, Plus } from "@bigbinary/neeto-icons";
-import { Typography } from "@bigbinary/neetoui/v2";
-import { MenuBar } from "@bigbinary/neetoui/v2/layouts";
+import { Search, Settings, Plus } from "neetoIcons";
+import { Typography } from "neetoui/v2";
+import { MenuBar } from "neetoui/v2/layouts";
 
 export default function SideMenu() {
   return (

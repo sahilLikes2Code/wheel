@@ -2,8 +2,8 @@ import React from "react";
 
 import { Formik, Form } from "formik";
 import { Check } from "neetoIcons";
-import { Input, Select } from "neetoui/formik";
 import { Button } from "neetoui/v2";
+import { Input, Select } from "neetoui/v2/formik";
 
 import notesApi from "apis/notes";
 import formInitialValues from "constants/formInitialValues";
@@ -12,9 +12,9 @@ import formValidationSchemas from "constants/formValidationSchemas";
 import {
   ASSIGNED_CONTACT_DROPDOWN_OPTIONS,
   TAG_DROPDOWN_OPTIONS,
-} from "./constants";
+} from "../constants";
 
-export default function NewNoteForm({ onClose, refetch }) {
+export default function NoteForm({ onClose, refetch }) {
   const handleSubmit = async values => {
     try {
       await notesApi.create(values);
@@ -33,8 +33,8 @@ export default function NewNoteForm({ onClose, refetch }) {
     >
       {({ isSubmitting }) => (
         <Form className="space-y-6 w-full">
-          <Input label="Title *" name="title" />
-          <Input label="Description  *" name="description" />
+          <Input label="Title *" name="title" size="large" />
+          <Input label="Description  *" name="description" size="large" />
           <Select
             name="assignedContact"
             isClearable

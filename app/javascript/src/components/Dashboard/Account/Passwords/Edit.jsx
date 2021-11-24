@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Form, Formik } from "formik";
-import { Button, Toastr } from "neetoui";
-import { Input as FormikInput } from "neetoui/formik";
 import { Header } from "neetoui/layouts";
+import { Button, Toastr } from "neetoui/v2";
+import { Input as FormikInput } from "neetoui/v2/formik";
 import * as Yup from "yup";
 
 import registrationsApi from "apis/registrations";
@@ -41,7 +41,7 @@ const Edit = () => {
   return (
     <>
       <Header title="Change Password" className="border-b border-gray-200" />
-      <div className="flex flex-col items-center justify-center w-full h-full mx-auto sm:max-w-md">
+      <div className="flex flex-col justify-center items-center mx-auto w-full h-full sm:max-w-md">
         <Formik
           initialValues={{
             currentPassword: "",
@@ -51,7 +51,7 @@ const Edit = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          <Form className="w-full p-8 space-y-6 bg-white border rounded-lg shadow-sm">
+          <Form className="p-8 space-y-6 w-full bg-white rounded-lg border shadow-sm">
             <FormikInput
               {...formikInputAttrs}
               name="currentPassword"
