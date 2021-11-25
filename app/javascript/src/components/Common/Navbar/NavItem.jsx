@@ -1,7 +1,7 @@
 import React from "react";
 
 import classnames from "classnames";
-import { Button, Dropdown, Tooltip } from "neetoui";
+import { Button, Dropdown, Tooltip } from "neetoui/v2";
 import { useHistory, useLocation } from "react-router-dom";
 
 import SubMenu from "./SubMenu";
@@ -25,13 +25,13 @@ export default function NavItem({
       onClick={() => (onClick ? onClick() : history.push(link))}
       className={classnames(
         [
-          "w-12 h-12 rounded-md text-2xl flex items-center justify-center opacity-100",
+          "flex justify-center items-center w-12 h-12 text-2xl rounded-md opacity-100",
           className,
         ],
         {
           "text-white bg-purple-500 hover:bg-purple-600 hover:text-white":
             isActive,
-          "text-cool-gray-600  hover:bg-cool-gray-300  hover:text-cool-gray-600 ":
+          "text-cool-gray-600 hover:bg-cool-gray-300 hover:text-cool-gray-600":
             !isActive,
         }
       )}

@@ -1,13 +1,14 @@
 import React from "react";
 
-import { UserCircle, Text, NeetoInsights } from "@bigbinary/neeto-icons";
-import { Toastr } from "@bigbinary/neetoui/v2";
-import { Sidebar } from "@bigbinary/neetoui/v2/layouts";
+import { Toastr } from "neetoui/v2";
+import { Sidebar } from "neetoui/v2/layouts";
 import { withRouter, useHistory } from "react-router-dom";
 
 import authenticationApi from "apis/authentication";
 import { resetAuthTokens } from "apis/axios";
 import { useAuthDispatch } from "contexts/auth";
+
+import { NAV_LINKS } from "./constants";
 
 const NavBar = () => {
   const authDispatch = useAuthDispatch();
@@ -29,27 +30,11 @@ const NavBar = () => {
   };
 
   return (
-    <div className="flex flex-row items-start justify-start">
+    <div className="flex flex-row justify-start items-start">
       <Sidebar
         appName="neetoUI"
         isCollapsed
-        navLinks={[
-          {
-            icon: Text,
-            label: "Notes",
-            to: "/notes",
-          },
-          {
-            icon: UserCircle,
-            label: "Contacts",
-            to: "/contacts",
-          },
-          {
-            icon: NeetoInsights,
-            label: "Reports",
-            to: "#",
-          },
-        ]}
+        navLinks={NAV_LINKS}
         profileInfo={{
           dropdownProps: [
             {

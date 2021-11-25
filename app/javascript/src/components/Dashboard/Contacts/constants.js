@@ -1,4 +1,19 @@
-const DUMMY_CONTACTS = [
+export const ASSIGNED_ROLE_DROPDOWN_OPTIONS = [
+  {
+    label: "Manager",
+    value: "manager",
+  },
+  {
+    label: "Client",
+    value: "client",
+  },
+  {
+    label: "Admin",
+    value: "admin",
+  },
+];
+
+export const DUMMY_CONTACTS = [
   {
     name: "Ronald Richards",
     role: "Owner",
@@ -65,5 +80,3 @@ const DUMMY_CONTACTS = [
     imageUrl: "https://randomuser.me/api/portraits/men/29.jpg",
   },
 ];
-
-export default DUMMY_CONTACTS;

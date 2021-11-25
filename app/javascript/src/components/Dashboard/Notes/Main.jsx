@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-import { Search } from "@bigbinary/neeto-icons";
-import { Button, Input, PageLoader } from "@bigbinary/neetoui/v2";
-import { Header } from "@bigbinary/neetoui/v2/layouts";
 import EmptyNotesListImage from "images/EmptyNotesList";
+import { Search, Plus } from "neetoIcons";
+import { Alert, Button, Input, PageLoader } from "neetoui/v2";
+import { Header } from "neetoui/v2/layouts";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
-import DeleteAlert from "./DeleteAlert";
-import NewNotePane from "./NewNotePane";
+import { DUMMY_NOTES } from "./constants";
+import NewNote from "./NewNote";
+// import NewNotePane from "./NewNotePane";
 import NotesList from "./NotesList";
 
-import DUMMY_NOTES from "../../../constants/dummyNotes";
-
 const Main = () => {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [notes, setNotes] = useState([]);
 
   const allNotes = DUMMY_NOTES.concat(notes);
@@ -29,17 +29,30 @@ const Main = () => {
 
   const fetchNotes = async () => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const response = await notesApi.fetch();
       setNotes(response.data.notes);
     } catch (error) {
       logger.error(error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  if (loading) {
+  const handleDelete = async () => {
+    try {
+      setIsDeleting(true);
+      await notesApi.destroy({ ids: selectedNoteIds });
+      setShowDeleteAlert(false);
+      fetchNotes();
+    } catch (error) {
+      logger.error(error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  if (isLoading) {
     return <PageLoader />;
   }
 
@@ -51,14 +64,13 @@ const Main = () => {
           <>
             <Input
               prefix={<Search />}
-              className="mr-3"
+              className="mr-3 w-80"
               placeholder="Search Name, Email, Phone Number, Etc."
-              style={{ width: "305px" }}
             />
             <Button
               onClick={() => setShowNewNotePane(true)}
               label="Add Note"
-              icon="ri-add-line"
+              icon={Plus}
               className="py-2"
             />
           </>
@@ -84,16 +96,21 @@ const Main = () => {
           primaryActionLabel="Add New Note"
         />
       )}
-      <NewNotePane
+      <NewNote
         showPane={showNewNotePane}
         setShowPane={setShowNewNotePane}
         fetchNotes={fetchNotes}
       />
       {showDeleteAlert && (
-        <DeleteAlert
-          selectedNoteIds={selectedNoteIds}
+        <Alert
+          closeOnOutsideClick={true}
+          isOpen={showDeleteAlert}
+          isSubmitting={isDeleting}
+          message="Are you sure you want to delete the note? This action cannot be undone."
           onClose={() => setShowDeleteAlert(false)}
-          refetch={fetchNotes}
+          onSubmit={() => handleDelete()}
+          size="md"
+          title="Delete Contact"
         />
       )}
     </>

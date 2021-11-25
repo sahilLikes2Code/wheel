@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 import { Form, Formik } from "formik";
-import { Button } from "neetoui";
-import { Input as FormikInput } from "neetoui/formik";
 import { Header } from "neetoui/layouts";
+import { Button } from "neetoui/v2";
+import { Input as FormikInput } from "neetoui/v2/formik";
 
 import formValidationSchemas from "constants/formValidationSchemas";
 import { useUserState } from "contexts/user";
@@ -19,7 +19,7 @@ const Profile = () => {
   return (
     <>
       <Header title="My Profile" className="border-b border-gray-200" />
-      <div className="flex flex-col items-center justify-center w-full h-full mx-auto sm:max-w-md">
+      <div className="flex flex-col justify-center items-center mx-auto w-full h-full sm:max-w-md">
         <Formik
           initialValues={{
             email: user.email,
@@ -33,7 +33,7 @@ const Profile = () => {
           validationSchema={formValidationSchemas.profileForm}
         >
           {({ handleSubmit }) => (
-            <Form className="w-full p-8 space-y-6 bg-white border rounded-lg shadow-sm">
+            <Form className="p-8 space-y-6 w-full bg-white rounded-lg border shadow-sm">
               <FormikInput name="email" label="Email" type="email" required />
               <FormikInput name="firstName" label="First Name" required />
               <FormikInput name="lastName" label="Last name" required />

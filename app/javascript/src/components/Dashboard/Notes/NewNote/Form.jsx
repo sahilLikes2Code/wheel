@@ -1,18 +1,20 @@
 import React from "react";
 
-import { Check } from "@bigbinary/neeto-icons";
-import { Button } from "@bigbinary/neetoui/v2";
 import { Formik, Form } from "formik";
-import { Input } from "neetoui/formik";
+import { Check } from "neetoIcons";
+import { Button } from "neetoui/v2";
+import { Input, Select } from "neetoui/v2/formik";
 
 import notesApi from "apis/notes";
 import formInitialValues from "constants/formInitialValues";
 import formValidationSchemas from "constants/formValidationSchemas";
 
-import AssignedContractDropdown from "./AssignedContractDropdown";
-import TagsDropdown from "./TagsDropdown";
+import {
+  ASSIGNED_CONTACT_DROPDOWN_OPTIONS,
+  TAG_DROPDOWN_OPTIONS,
+} from "../constants";
 
-export default function NewNoteForm({ onClose, refetch }) {
+export default function NoteForm({ onClose, refetch }) {
   const handleSubmit = async values => {
     try {
       await notesApi.create(values);
@@ -30,11 +32,25 @@ export default function NewNoteForm({ onClose, refetch }) {
       validationSchema={formValidationSchemas.newNoteForm}
     >
       {({ isSubmitting }) => (
-        <Form className="w-full">
-          <Input label="Title *" name="title" className="mb-6" />
-          <Input label="Description  *" name="description" className="mb-6" />
-          <AssignedContractDropdown name="assignedContact" />
-          <TagsDropdown name="tags" />
+        <Form className="space-y-6 w-full">
+          <Input label="Title *" name="title" size="large" />
+          <Input label="Description  *" name="description" size="large" />
+          <Select
+            name="assignedContact"
+            isClearable
+            isSearchable
+            label="Assigned Contact  *"
+            options={ASSIGNED_CONTACT_DROPDOWN_OPTIONS}
+            placeholder="Select Role"
+          />
+          <Select
+            name="tags"
+            isClearable
+            isSearchable
+            label="Tags *"
+            options={TAG_DROPDOWN_OPTIONS}
+            placeholder="Select Role"
+          />
 
           <div className="absolute bottom-0 left-0 p-8 w-full border-t">
             <Button

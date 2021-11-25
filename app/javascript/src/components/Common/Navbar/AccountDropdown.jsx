@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Avatar, Dropdown } from "neetoui";
+import { Avatar, Dropdown } from "neetoui/v2";
 import { NavLink } from "react-router-dom";
 
 import { useUserState } from "contexts/user";

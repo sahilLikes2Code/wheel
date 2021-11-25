@@ -1,4 +1,4 @@
-const DUMMY_NOTES = [
+export const DUMMY_NOTES = [
   {
     title: "How to claim the warranty?",
     description:
@@ -19,4 +19,44 @@ const DUMMY_NOTES = [
   },
 ];
 
-export default DUMMY_NOTES;
+export const ASSIGNED_CONTACT_DROPDOWN_OPTIONS = [
+  {
+    label: "User1",
+    value: "user1",
+  },
+  {
+    label: "User2",
+    value: "user2",
+  },
+  {
+    label: "User3",
+    value: "user3",
+  },
+];
+
+export const TAG_DROPDOWN_OPTIONS = [
+  {
+    label: "Getting Started",
+    value: "gettingStarted",
+  },
+  {
+    label: "Onboarding",
+    value: "onboarding",
+  },
+  {
+    label: "User Flow",
+    value: "userFlow",
+  },
+  {
+    label: "UX",
+    value: "ux",
+  },
+  {
+    label: "Bugs",
+    value: "bugs",
+  },
+  {
+    label: "V2",
+    value: "v2",
+  },
+];

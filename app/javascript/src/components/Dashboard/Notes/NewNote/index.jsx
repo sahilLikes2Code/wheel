@@ -1,20 +1,20 @@
 import React from "react";
 
-import { Pane, Typography } from "@bigbinary/neetoui/v2";
+import { Pane, Typography } from "neetoui/v2";
 
-import NewContactForm from "./NewContactForm";
+import Form from "./Form";
 
-export default function NewContactPane({ showPane, setShowPane }) {
+export default function NewNotePane({ fetchNotes, showPane, setShowPane }) {
   const onClose = () => setShowPane(false);
   return (
     <Pane isOpen={showPane} onClose={() => onClose()} size="lg">
       <Pane.Header>
         <Typography style="h2" weight="semibold">
-          Add New Contact
+          Add New Note
         </Typography>
       </Pane.Header>
       <Pane.Body>
-        <NewContactForm onClose={onClose} />
+        <Form onClose={onClose} refetch={fetchNotes} />
       </Pane.Body>
     </Pane>
   );
